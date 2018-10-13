@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.Select;
 
 public class FacebookSignUpPage {
 	
+	private static final String CSS_SELECTOR_BOTAO_ENTRAR = "#u_0_2";
+
 	private WebDriver aDriver;
 	
 	/**
@@ -19,15 +21,19 @@ public class FacebookSignUpPage {
 	/**
 	 * WebElement Locators for Facebook
 	 */
-	private static final String NAME_INPUT_NOME_FACEBOOK							= "firstname";
-	private static final String NAME_INPUT_SOBRENOME_FACEBOOK						= "lastname";
-	private static final String NAME_INPUT_EMAIL_FACEBOOK							= "reg_email__";
-	private static final String NAME_INPUT_SENHA_FACEBOOK							= "reg_passwd__";
-	private static final String NAME_INPUT_DIA_ANIVERSARIO_FACEBOOK					= "birthday_day";
-	private static final String NAME_INPUT_MES_ANIVERSARIO_FACEBOOK					= "birthday_month";
-	private static final String NAME_INPUT_ANO_ANIVERSARIO_FACEBOOK					= "birthday_year";
-	private static final String NAME_RADIOBUTTON_GENERO_FACEBOOK					= "sex";
-	private static final String NAME_BOTAO_INSCREVER_FACEBOOK = "websubmit";
+	private static final String NAME_INPUT_NOME					= "firstname";
+	private static final String NAME_INPUT_SOBRENOME			= "lastname";
+	private static final String NAME_INPUT_EMAIL				= "reg_email__";
+	private static final String NAME_INPUT_SENHA				= "reg_passwd__";
+	private static final String NAME_INPUT_DIA_ANIVERSARIO		= "birthday_day";
+	private static final String NAME_INPUT_MES_ANIVERSARIO		= "birthday_month";
+	private static final String NAME_INPUT_ANO_ANIVERSARIO		= "birthday_year";
+	private static final String NAME_RADIOBUTTON_GENERO			= "sex";
+	private static final String NAME_BOTAO_INSCREVER			= "websubmit";
+	private static final String ID_INPUT_EMAIL					= "email";
+	private static final String ID_PASSWORD						= "pass";
+	private static final String EMAIL							= "pedropk@gmail.com";
+	private static final String SENHA							= "ubE7bUN#&$Z5";
 	
 	public void accessURL() {
 		this.aDriver.get(URL_FACEBOOK);
@@ -48,57 +54,97 @@ public class FacebookSignUpPage {
 	}
 	
 	public FacebookSignUpPage preencherNome(String pNome) {
-		preencherCampoInputPorName(NAME_INPUT_NOME_FACEBOOK, pNome);
+		preencherCampoInputPorName(NAME_INPUT_NOME, pNome);
 		
 		return this;
 	}
 	
 	public FacebookSignUpPage preencherSobrenome(String pSobrenome) {
-		preencherCampoInputPorName(NAME_INPUT_SOBRENOME_FACEBOOK, pSobrenome);
+		preencherCampoInputPorName(NAME_INPUT_SOBRENOME, pSobrenome);
 		
 		return this;
 	}
 	
 	public FacebookSignUpPage preencherEmail(String pEmail) {
-		preencherCampoInputPorName(NAME_INPUT_EMAIL_FACEBOOK, pEmail);
+		preencherCampoInputPorName(NAME_INPUT_EMAIL, pEmail);
 		
 		return this;
 	}
 	
 	public FacebookSignUpPage preencherSenha(String pSenha) {
-		preencherCampoInputPorName(NAME_INPUT_SENHA_FACEBOOK, pSenha);
+		preencherCampoInputPorName(NAME_INPUT_SENHA, pSenha);
 		
 		return this;
 	}
 	
 	public FacebookSignUpPage selecionarDiaNascimento(String pDiaNascimento) {
-		selecionarPorNomeValor(NAME_INPUT_DIA_ANIVERSARIO_FACEBOOK, pDiaNascimento);
+		selecionarPorNomeValor(NAME_INPUT_DIA_ANIVERSARIO, pDiaNascimento);
 		
 		return this;
 	}
 	
 	public FacebookSignUpPage selecionarMesNascimento(String pMesNascimento) {
-		selecionarPorNomeValor(NAME_INPUT_MES_ANIVERSARIO_FACEBOOK, pMesNascimento);
+		selecionarPorNomeValor(NAME_INPUT_MES_ANIVERSARIO, pMesNascimento);
 		
 		return this;
 	}
 	
 	public FacebookSignUpPage selecionarAnoNascimento(String pAnoNascimento) {
-		selecionarPorNomeValor(NAME_INPUT_ANO_ANIVERSARIO_FACEBOOK, pAnoNascimento);
+		selecionarPorNomeValor(NAME_INPUT_ANO_ANIVERSARIO, pAnoNascimento);
 		
 		return this;
 	}
 	
 	public FacebookSignUpPage selecionarGenero(String pGenero) {
 		selecionarRadiobuttonOuCheckboxPorNomeValor(
-				NAME_RADIOBUTTON_GENERO_FACEBOOK, 
+				NAME_RADIOBUTTON_GENERO, 
 				pGenero);
 		
 		return this;
 	}
 	
 	public void pressionarBotaoFormularioIncluirUsuario() {
-		this.aDriver.findElement(By.name(NAME_BOTAO_INSCREVER_FACEBOOK)).click();
+		this.aDriver.findElement(By.name(NAME_BOTAO_INSCREVER)).click();
+	}
+	
+	public void facebookLoginTest() {
+		this.aDriver.get(URL_FACEBOOK);
+		this.aDriver.manage().window().maximize();
+		
+		/*WebElement inputEmail		=*/ preencherEmailLogin(EMAIL);
+		
+		/*WebElement password		=*/ preencherSenhaLogin(SENHA);
+		
+		//inputEmail.submit();
+		pressionarBotaoEntrar();
+	}
+	
+	public void pressionarBotaoEntrar() {
+		this.aDriver.findElement(By.cssSelector(CSS_SELECTOR_BOTAO_ENTRAR)).submit();;
+	}
+	
+	public FacebookSignUpPage preencherSenhaLogin(String senha) {
+		preencherCampoInputPorID(ID_PASSWORD,	senha);
+		
+		return this;
+	}
+
+	public FacebookSignUpPage preencherEmailLogin(String email) {
+		preencherCampoInputPorID(ID_INPUT_EMAIL,	email);
+		
+		return this;
+	}
+	
+	private WebElement preencherCampoInputPorID(String pId, String pValor) {
+		WebElement campo = this.aDriver.findElement(By.id(pId));
+		
+		// Limpa valores previamente digitados
+		campo.clear();
+		
+		// Preenche o campo
+		campo.sendKeys(pValor);
+		
+		return campo;
 	}
 	
 	private WebElement preencherCampoInputPorName(String pName, String pValor) {

@@ -21,8 +21,8 @@ public class BaseSeleniumTest {
 	 */
 	private static final String ATTRIBUTE_VALUE = "value";
 	
-	private static final String EMAIL_FACEBOOK = "pedropk@gmail.com";
-	private static final String SENHA_FACEBOOK = "ubE7bUN#&$Z5";
+	public static final String EMAIL_FACEBOOK = "patricia.karolina.1983@gmail.com";
+	public static final String SENHA_FACEBOOK = "U%kNjgU:DYF~q%A";
 	
 	/**
 	 * URL's
