@@ -14,6 +14,8 @@ import org.openqa.selenium.support.ui.Select;
 
 public class FirstSeleniumTest {
 	
+	private static final String NAME_BOTAO_INSCREVER_FACEBOOK = "websubmit";
+
 	/**
 	 * HTML Tags and Attributes
 	 */
@@ -31,16 +33,17 @@ public class FirstSeleniumTest {
 	/**
 	 * WebElement Locators
 	 */
-	private static final String NAME_INPUT_QUERY						= "q";
-	private static final String NAME_INPUT_NOME_FACEBOOK				= "firstname";
-	private static final String NAME_INPUT_SOBRENOME_FACEBOOK			= "lastname";
-	private static final String NAME_INPUT_EMAIL_FACEBOOK				= "reg_email__";
-	private static final String NAME_INPUT_SENHA_FACEBOOK				= "reg_passwd__";
-	private static final String NAME_INPUT_DIA_ANIVERSARIO_FACEBOOK		= "birthday_day";
-	private static final String NAME_INPUT_MES_ANIVERSARIO_FACEBOOK		= "birthday_month";
-	private static final String NAME_INPUT_ANO_ANIVERSARIO_FACEBOOK		= "birthday_year";
-	private static final String NAME_RADIOBUTTON_GENERO_FACEBOOK		= "sex";
-	private static final String VALUE_RADIOBUTTON_MASCULINO_FACEBOOK	= "2";
+	private static final String NAME_INPUT_QUERY									= "q";
+	private static final String NAME_INPUT_NOME_FACEBOOK							= "firstname";
+	private static final String NAME_INPUT_SOBRENOME_FACEBOOK						= "lastname";
+	private static final String NAME_INPUT_EMAIL_FACEBOOK							= "reg_email__";
+	private static final String NAME_INPUT_SENHA_FACEBOOK							= "reg_passwd__";
+	private static final String NAME_INPUT_DIA_ANIVERSARIO_FACEBOOK					= "birthday_day";
+	private static final String NAME_INPUT_MES_ANIVERSARIO_FACEBOOK					= "birthday_month";
+	private static final String NAME_INPUT_ANO_ANIVERSARIO_FACEBOOK					= "birthday_year";
+	private static final String NAME_RADIOBUTTON_GENERO_FACEBOOK					= "sex";
+	private static final String VALUE_OPTION_MES_02_FEVEREIRO_MASCULINO_FACEBOOK	= "2";
+	private static final String VALUE_RADIOBUTTON_MASCULINO_FACEBOOK				= "2";
 	
 	private static final String ID_INPUT_EMAIL							= "email";
 	private static final String ID_PASSWORD								= "pass";
@@ -93,26 +96,33 @@ public class FirstSeleniumTest {
 		
 		/*WebElement inputNome				=*/ 	preencherCampoInputPorName(	NAME_INPUT_NOME_FACEBOOK,				"Pedro");
 		/*WebElement inputSobrenome			=*/ 	preencherCampoInputPorName(	NAME_INPUT_SOBRENOME_FACEBOOK,			"Santos");
-		/*WebElement inputEmail				=*/ 	preencherCampoInputPorName(	NAME_INPUT_EMAIL_FACEBOOK,				"pedro.santos@unibratec.edu.br");
+		/*WebElement inputEmail				=*/ 	preencherCampoInputPorName(	NAME_INPUT_EMAIL_FACEBOOK,				"pedro.santos@@unibratec.edu.br");
 		/*WebElement inputSenha				=*/ 	preencherCampoInputPorName(	NAME_INPUT_SENHA_FACEBOOK,				"12sad435g76gh!@#ˆ&%");
 		
 		/*Select selectDiaAniversario			=*/ selecionarPorNomeValor(		NAME_INPUT_DIA_ANIVERSARIO_FACEBOOK, 	"1");
-		/*Select selectMesAniversario			=*/ selecionarPorNomeValor(		NAME_INPUT_MES_ANIVERSARIO_FACEBOOK, 	VALUE_RADIOBUTTON_MASCULINO_FACEBOOK);
+		/*Select selectMesAniversario			=*/ selecionarPorNomeValor(		NAME_INPUT_MES_ANIVERSARIO_FACEBOOK, 	VALUE_OPTION_MES_02_FEVEREIRO_MASCULINO_FACEBOOK);
 		/*Select selectAnoAniversario			=*/ selecionarPorNomeValor(		NAME_INPUT_ANO_ANIVERSARIO_FACEBOOK, 	"1983");
 		
-		selecionarRadioButtonPorNomeValor(
+		selecionarRadiobuttonOuCheckboxPorNomeValor(
 			NAME_RADIOBUTTON_GENERO_FACEBOOK, 
 			VALUE_RADIOBUTTON_MASCULINO_FACEBOOK);
 		
-		//WebElement password		= preencherCampoInputPorID(ID_PASSWORD,			SENHA_FACEBOOK);
-		
-		//inputEmail.submit();
+		//submeterBotaoFormularioIncluirUsuario(NAME_BOTAO_INSCREVER_FACEBOOK);
+		pressionarBotaoFormularioIncluirUsuario(NAME_BOTAO_INSCREVER_FACEBOOK);
 	}
-
-	private void selecionarRadioButtonPorNomeValor(String pNomeRadiobuttons, String pValorDesejadoRadiobutton) {
+	
+	/*private void submeterBotaoFormularioIncluirUsuario(String pNomeBotaoSubmit) {
+		driver.findElement(By.name(pNomeBotaoSubmit)).submit();
+	}*/
+	
+	private void pressionarBotaoFormularioIncluirUsuario(String pNomeBotaoSubmit) {
+		driver.findElement(By.name(pNomeBotaoSubmit)).click();
+	}
+	
+	private void selecionarRadiobuttonOuCheckboxPorNomeValor(String pNomeRadiobuttons, String pValorDesejadoRadiobutton) {
 		List<WebElement> radiosGenero = getRadiobuttonsPorNome(pNomeRadiobuttons);
 		
-		for (WebElement radioButton : radiosGenero) {		// Masculino
+		for (WebElement radioButton : radiosGenero) {
 			if ( radioButton.getAttribute(ATTRIBUTE_VALUE).equals(pValorDesejadoRadiobutton)		&&
 				 !radioButton.isSelected()
 			) {
