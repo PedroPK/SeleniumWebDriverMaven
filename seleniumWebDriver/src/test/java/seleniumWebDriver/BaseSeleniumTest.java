@@ -12,10 +12,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class FirstSeleniumTest {
+public class BaseSeleniumTest {
 	
 	private static final String NAME_BOTAO_INSCREVER_FACEBOOK = "websubmit";
-
+	
 	/**
 	 * HTML Tags and Attributes
 	 */
@@ -23,17 +23,22 @@ public class FirstSeleniumTest {
 	
 	private static final String EMAIL_FACEBOOK = "pedropk@gmail.com";
 	private static final String SENHA_FACEBOOK = "ubE7bUN#&$Z5";
+	
 	/**
 	 * URL's
 	 */
 	private static final String URL_FACEBOOK = "https://pt-br.facebook.com/";
 	private static final String URL_G1 = "https://g1.globo.com/";
-	private static final String URL_OANTAGONISTA = "https://www.oantagonista.com";
 	
 	/**
 	 * WebElement Locators
 	 */
 	private static final String NAME_INPUT_QUERY									= "q";
+	
+	/**
+	 * WebElement Locators for Facebook
+	 */
+	
 	private static final String NAME_INPUT_NOME_FACEBOOK							= "firstname";
 	private static final String NAME_INPUT_SOBRENOME_FACEBOOK						= "lastname";
 	private static final String NAME_INPUT_EMAIL_FACEBOOK							= "reg_email__";
@@ -42,11 +47,15 @@ public class FirstSeleniumTest {
 	private static final String NAME_INPUT_MES_ANIVERSARIO_FACEBOOK					= "birthday_month";
 	private static final String NAME_INPUT_ANO_ANIVERSARIO_FACEBOOK					= "birthday_year";
 	private static final String NAME_RADIOBUTTON_GENERO_FACEBOOK					= "sex";
+	private static final String ID_INPUT_EMAIL										= "email";
+	private static final String ID_PASSWORD											= "pass";
+	
+	/**
+	 * Values de WebElement Locators
+	 */
 	private static final String VALUE_OPTION_MES_02_FEVEREIRO_MASCULINO_FACEBOOK	= "2";
 	private static final String VALUE_RADIOBUTTON_MASCULINO_FACEBOOK				= "2";
 	
-	private static final String ID_INPUT_EMAIL							= "email";
-	private static final String ID_PASSWORD								= "pass";
 	
 	/**
 	 * Driver Configurations
@@ -141,7 +150,7 @@ public class FirstSeleniumTest {
 		selectDiaAniversario.selectByValue(pValorSelect);
 		return selectDiaAniversario;
 	}
-
+	
 	private Select getSelectPorNome(String pNomeSelect) {
 		WebElement	campoDiaAniversario		= driver.findElement(By.name(pNomeSelect));
 		Select		selectDiaAniversario	= new Select(campoDiaAniversario);
