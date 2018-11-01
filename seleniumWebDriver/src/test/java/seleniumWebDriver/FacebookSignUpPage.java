@@ -32,8 +32,8 @@ public class FacebookSignUpPage {
 	private static final String NAME_BOTAO_INSCREVER			= "websubmit";
 	private static final String ID_INPUT_EMAIL					= "email";
 	private static final String ID_PASSWORD						= "pass";
-	private static final String EMAIL							= "pedropk@gmail.com";
-	private static final String SENHA							= "ubE7bUN#&$Z5";
+	public static final String EMAIL							= "pedropk@gmail.com";
+	public static final String SENHA							= "ubE7bUN#&$Z5";
 	
 	public void accessURL() {
 		this.aDriver.get(URL_FACEBOOK);
