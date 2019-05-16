@@ -62,10 +62,10 @@ public class FacebookTest {
 	@Test
 	public void testSignUp() {
 		aFacebookPage
-			.preencherNome(				"Pedro")
-			.preencherSobrenome(		"Santos")
-			.preencherEmail(			"pedro.santos@@unibratec.edu.br")
-			.preencherSenha(			"asdqwe123df$%fgd$%")
+			.preencherNome(				"SEU_NOME")
+			.preencherSobrenome(		"SEU_SOBRENOME")
+			.preencherEmail(			"INSIRA_AQUI_SEU_EMAIL")
+			.preencherSenha(			"INSIRA_AQUI_SUA_SENHA")
 			.selecionarDiaNascimento(	VALUE_OPTION_DIA_1)
 			.selecionarMesNascimento(	VALUE_OPTION_MES_02_FEVEREIRO)
 			.selecionarAnoNascimento(	VALUE_OPTION_ANO_1983)

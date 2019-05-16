@@ -17,6 +17,7 @@ public class FacebookSignUpPage {
 	 * URL's
 	 */
 	private static final String URL_FACEBOOK = "https://pt-br.facebook.com/";
+	//private static final String URL_LOCALHOST = "http://localhost:8080/MWA/jsf/named.xhtml";
 	
 	/**
 	 * WebElement Locators for Facebook
@@ -32,8 +33,8 @@ public class FacebookSignUpPage {
 	private static final String NAME_BOTAO_INSCREVER			= "websubmit";
 	private static final String ID_INPUT_EMAIL					= "email";
 	private static final String ID_PASSWORD						= "pass";
-	public static final String EMAIL							= "pedropk@gmail.com";
-	public static final String SENHA							= "ubE7bUN#&$Z5";
+	public static final String EMAIL							= "INSIRA_AQUI_SEU_EMAIL";
+	public static final String SENHA							= "INSIRA_AQUI_SUA_SENHA";
 	
 	public void accessURL() {
 		this.aDriver.get(URL_FACEBOOK);
